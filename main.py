@@ -1,14 +1,12 @@
-from flask import Flask,request
+from flask import Flask,render_template
 
 
 app=Flask(__name__)
 
-@app.route('/login',methods=['GET','POST'])
-def login():
-    if request.method=='POST':
-        print(request.method)
-    else:
-         print(request.method)
+
+@app.route('/hellow/<name>')
+def hellow(name):
+    return render_template('index.html',name=name)
 
 if __name__=='__main__':
     app.run()

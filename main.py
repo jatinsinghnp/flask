@@ -1,27 +1,14 @@
-from flask import Flask
-from markupsafe import escape
+from flask import Flask,request
+
 
 app=Flask(__name__)
-from flask import url_for
 
-@app.route('/')
-def index():
-    return 'index'
-
-@app.route('/login')
+@app.route('/login',methods=['GET','POST'])
 def login():
-    return 'login'
-
-@app.route('/user/<username>')
-def profile(username):
-    return f'{username}\'s profile'
-
-with app.test_request_context():
-    print(url_for('index'))
-    print(url_for('login'))
-    print(url_for('login', next='/'))
-    print(url_for('profile', username='John Doe'))
-
+    if request.method=='POST':
+        print(request.method)
+    else:
+         print(request.method)
 
 if __name__=='__main__':
     app.run()
